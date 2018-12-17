@@ -1,3 +1,3 @@
-# Checkmate Dojo
+# Checklist Dojo
 
 Checklist Manager
