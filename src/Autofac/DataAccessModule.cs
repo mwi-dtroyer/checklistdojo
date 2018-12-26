@@ -1,11 +1,11 @@
 ﻿using Autofac;
-using checklistdojo.Configuration;
-using checklistdojo.Data.Repositories;
+using CheckListDojo.Configuration;
+using CheckListDojo.Data.Repositories;
 using Microsoft.Extensions.Options;
 using Mwi.Data.Dapper;
 using Mwi.Data.Dapper.MySql;
 
-namespace checklistdojo.Autofac
+namespace CheckListDojo.Autofac
 {
     public class DataAccessModule : Module
     {

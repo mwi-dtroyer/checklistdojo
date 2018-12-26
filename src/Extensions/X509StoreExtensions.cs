@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 
-namespace checklistdojo.Extensions
+namespace CheckListDojo.Extensions
 {
     public static class X509StoreExtensions
     {        

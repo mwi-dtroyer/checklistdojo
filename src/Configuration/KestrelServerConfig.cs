@@ -5,13 +5,13 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
-using checklistdojo.Extensions;
+using CheckListDojo.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Options;
 using Serilog;
 
-namespace checklistdojo.Configuration
+namespace CheckListDojo.Configuration
 {
     public interface IKestrelServerConfig
     {

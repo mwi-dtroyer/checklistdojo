@@ -3,10 +3,10 @@ using App.Metrics.AspNetCore.Endpoints;
 using App.Metrics.Formatters.Json;
 using App.Metrics.Formatters.Prometheus;
 using Autofac;
-using checklistdojo.Metrics;
+using CheckListDojo.Metrics;
 using Microsoft.Extensions.Options;
 
-namespace checklistdojo.Autofac
+namespace CheckListDojo.Autofac
 {
     public class MetricsModule : Module
     {

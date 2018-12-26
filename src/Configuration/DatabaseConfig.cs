@@ -1,4 +1,4 @@
-﻿namespace checklistdojo.Configuration
+﻿namespace CheckListDojo.Configuration
 {
     public class DatabaseConfig
     {

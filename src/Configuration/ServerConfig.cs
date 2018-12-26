@@ -2,7 +2,7 @@
 using System.Net;
 using Microsoft.AspNetCore.HttpOverrides.Internal;
 
-namespace checklistdojo.Configuration
+namespace CheckListDojo.Configuration
 {
     public class ServerConfig
     {

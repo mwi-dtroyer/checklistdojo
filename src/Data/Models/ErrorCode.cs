@@ -1,4 +1,4 @@
-﻿namespace checklistdojo.Data.Models
+﻿namespace CheckListDojo.Data.Models
 {
     public enum ErrorCode
     {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
-namespace checklistdojo.Autofac
+namespace CheckListDojo.Autofac
 {
     public class ServicesModule : Module
     {

@@ -3,7 +3,7 @@ using System.Threading;
 using Autofac;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using checklistdojo.Configuration;
+using CheckListDojo.Configuration;
 using Mwi.Web.Http;
 using Serilog;
 using Serilog.Context;
@@ -12,7 +12,7 @@ using Serilog.Events;
 using Serilog.Exceptions;
 using Serilog.Formatting.Json;
 
-namespace checklistdojo.Autofac
+namespace CheckListDojo.Autofac
 {
     public class LoggingModule : Module
     {

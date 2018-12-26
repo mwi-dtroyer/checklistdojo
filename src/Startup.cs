@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using checklistdojo.Autofac;
+using CheckListDojo.Autofac;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Mwi.Web.Http;
 using Serilog;
 using ILogger = Serilog.ILogger;
 
-namespace checklistdojo
+namespace CheckListDojo
 {
     public class Startup
     {

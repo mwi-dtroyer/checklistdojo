@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using Autofac.Extensions.DependencyInjection;
-using checklistdojo.Configuration;
+using CheckListDojo.Configuration;
 using CommandLine;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -11,7 +11,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
 
-namespace checklistdojo
+namespace CheckListDojo
 {
     public class Program
     {

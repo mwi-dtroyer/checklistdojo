@@ -1,6 +1,6 @@
 ﻿using Serilog.Events;
 
-namespace checklistdojo.Configuration
+namespace CheckListDojo.Configuration
 {
     public class LoggingConfig
     {
