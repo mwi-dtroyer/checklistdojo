@@ -70,7 +70,7 @@ namespace ChecklistDojo
                 // This makes it so that if a correlation id is provided, it reassigns the automatically generated
                 // HttpContext.TraceIdentifier to it, which will then show up in log messages as the RequestId field. 
                 // See the DefaultLogTemplate in LoggingConfig.cs
-                if (context.Request.Headers.TryGetValue(MwiHeaders.MwiCorrelationId, out var correlationId))
+                if (context.Request.Headers.TryGetValue("Correlation-Id", out var correlationId))
                 {
                     context.TraceIdentifier = correlationId;
                 }

@@ -64,7 +64,7 @@ namespace ChecklistDojo.Autofac
             var httpCtx = context.Resolve<IHttpContextAccessor>();
             var config = context.Resolve<LoggerConfiguration>();
             var correlationIdProvided = httpCtx?.HttpContext?.Request?.Headers
-                ?.TryGetValue(MwiHeaders.MwiCorrelationId, out var correlationId) ?? false;
+                ?.TryGetValue("Correlation-Id", out var correlationId) ?? false;
 
             LogContext.PushProperty("CorrelationId", correlationIdProvided
                 ? correlationId.ToString()
