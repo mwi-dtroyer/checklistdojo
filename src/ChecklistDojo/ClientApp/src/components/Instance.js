@@ -31,11 +31,9 @@ export class Instance extends Component {
 
   render() {
     var contents = List.MakeCheckList(this.state.listItems);
-    console.log(this.props);
     var title = "default";
 
     if (this.props) {
-      console.log(this.props.match.params.title);
       title = this.props.match.params.title;
     }
 
