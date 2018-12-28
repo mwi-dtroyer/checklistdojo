@@ -33,9 +33,9 @@ export class NavMenu extends Component {
                 <Glyphicon glyph="th-list" /> Fetch data
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={"/list/thisname"}>
+            <LinkContainer to={"/Instance/thisname"}>
               <NavItem>
-                <Glyphicon glyph="th-list" /> List
+                <Glyphicon glyph="th-list" /> Instance
               </NavItem>
             </LinkContainer>
           </Nav>

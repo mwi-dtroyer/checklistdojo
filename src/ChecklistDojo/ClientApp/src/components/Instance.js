@@ -1,7 +1,7 @@
 ﻿import React, { Component } from "react";
 import { listItems } from "./ListItem";
 
-export class List extends Component {
+export class Instance extends Component {
   displayName = List.name;
 
   constructor(props) {
