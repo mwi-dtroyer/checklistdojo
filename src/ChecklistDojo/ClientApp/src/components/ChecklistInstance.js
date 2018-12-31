@@ -1,5 +1,6 @@
 ﻿import React, { Component } from "react";
 import ChecklistItem from "./ChecklistItem";
+//import { Provider } from "./ChecklistContext";
 
 export default class ChecklistInstance extends Component {
   displayName = ChecklistInstance.name;
@@ -13,13 +14,24 @@ export default class ChecklistInstance extends Component {
       title: "Get Rich Quick Scheme",
       description: "A fast and easy three step path to financial success",
       items: [
-        { key: 1, text: "step one: steal underpants", checked: true },
-        { key: 2, text: "step two: ", checked: false },
-        { key: 3, text: "step three: profit", checked: true },
-        { key: 4, text: "whats step 2?", checked: false }
-      ]
+        { key: 0, text: "step one: steal underpants", checked: true },
+        { key: 1, text: "step two: ", checked: false },
+        { key: 2, text: "step three: profit", checked: true },
+        { key: 3, text: "whats step 2?", checked: false }
+      ],
+      handleListItemCheck: this.handleListItemCheck,
+      handleListItemDelet: this.handleListItemDelet,
+      handleListItemAdd: this.handleListItemAdd
     };
   }
+
+  handleListItemCheck = event => {
+    var items = this.state.items;
+    items[event.target.name].checked = event.target.checked;
+    this.setState({
+      items: items
+    });
+  };
   render() {
     const { title, description, items } = this.state;
 
@@ -33,7 +45,12 @@ export default class ChecklistInstance extends Component {
         */}
         <ul>
           {items.map(i => (
-            <ChecklistItem {...i} />
+            <ChecklistItem
+              text={i.text}
+              checked={i.checked}
+              name={i.key}
+              onChange={this.state.handleListItemCheck}
+            />
           ))}
         </ul>
       </div>
