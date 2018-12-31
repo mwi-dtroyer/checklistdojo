@@ -1,6 +1,6 @@
 ﻿import React, { Component } from "react";
 import ChecklistItem from "./ChecklistItem";
-//import { Provider } from "./ChecklistContext";
+import "./NavMenu.css";
 
 export default class ChecklistInstance extends Component {
   displayName = ChecklistInstance.name;
@@ -11,6 +11,7 @@ export default class ChecklistInstance extends Component {
     // This should work as our general core format for a checklist, though it is missing
     // the metadata we'll need for database idos, user idos, etc
     this.state = {
+      addItem: false,
       title: "Get Rich Quick Scheme",
       description: "A fast and easy three step path to financial success",
       items: [
@@ -18,10 +19,7 @@ export default class ChecklistInstance extends Component {
         { key: 1, text: "step two: ", checked: false },
         { key: 2, text: "step three: profit", checked: true },
         { key: 3, text: "whats step 2?", checked: false }
-      ],
-      handleListItemCheck: this.handleListItemCheck,
-      handleListItemDelet: this.handleListItemDelet,
-      handleListItemAdd: this.handleListItemAdd
+      ]
     };
   }
 
@@ -32,9 +30,39 @@ export default class ChecklistInstance extends Component {
       items: items
     });
   };
-  render() {
-    const { title, description, items } = this.state;
 
+  handleListItemAdd = () => {
+    this.setState({
+      addItem: true
+    });
+  };
+
+  handleListItemCancle = () => {
+    this.setState({
+      addItem: false
+    });
+  };
+
+  handleListItemSubmit = event => {
+    var keypressed = event.keyCode || event.which;
+    if (keypressed == 13) {
+      var items = this.state.items;
+      items.push({
+        key: items.length,
+        text: event.target.value,
+        checked: false
+      });
+      event.target.value = "";
+
+      this.setState({
+        items: items,
+        addItem: false
+      });
+    }
+  };
+  render() {
+    const { title, description, items, addItem } = this.state;
+    console.log(addItem);
     return (
       <div>
         <h1>{title}</h1>
@@ -49,10 +77,29 @@ export default class ChecklistInstance extends Component {
               text={i.text}
               checked={i.checked}
               name={i.key}
-              onChange={this.state.handleListItemCheck}
+              key={i.key}
+              onChange={this.handleListItemCheck}
             />
           ))}
+          {addItem ? (
+            <li>
+              <input type="checkbox" disabled="true" />{" "}
+              <input
+                type="text"
+                placeholder="Press Enter When Done"
+                onKeyDown={this.handleListItemSubmit}
+              />
+            </li>
+          ) : null}
         </ul>
+
+        <div id="header-content">
+          {addItem ? (
+            <button onClick={this.handleListItemCancle}>Cancle</button>
+          ) : (
+            <button onClick={this.handleListItemAdd}>+ Add</button>
+          )}
+        </div>
       </div>
     );
   }
