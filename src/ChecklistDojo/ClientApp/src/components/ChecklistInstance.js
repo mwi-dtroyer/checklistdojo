@@ -120,9 +120,11 @@ export default class ChecklistInstance extends Component {
             <div>
               <button onClick={this.handleListItemAdd}>+ Add</button>
               <br />
-              <button onClick={this.handleListItemCompleteAll}>
-                Complete All
-              </button>
+              {items.length > 0 ? (
+                <button onClick={this.handleListItemCompleteAll}>
+                  Complete All
+                </button>
+              ) : null}
             </div>
           )}
         </div>
