@@ -142,9 +142,13 @@ export default class ChecklistInstance extends Component {
         </div>
         {showModal ? (
           <Modal>
-            <h1>You are about to remove an item!</h1>
-            <button onClick={this.handleListItemDelete}>Remove</button>
-            <button onClick={this.toggleModal}>Keep</button>
+            <h1>You are about to remove an item from the list!</h1>
+            <button className="decline" onClick={this.handleListItemDelete}>
+              Remove
+            </button>{" "}
+            <button className="accept" onClick={this.toggleModal}>
+              Keep
+            </button>
           </Modal>
         ) : null}
       </div>
