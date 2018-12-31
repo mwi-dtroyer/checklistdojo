@@ -95,10 +95,6 @@ export default class ChecklistInstance extends Component {
       <div>
         <h1>{title}</h1>
         <p>{description}</p>
-        {/*
-        TODO: Use a combination of css grid and stylesheets for handling our item layout.
-        An unordered list looks a bit drab.
-        */}
         <ul className="undressed">
           {items.map(i => (
             <ChecklistItem

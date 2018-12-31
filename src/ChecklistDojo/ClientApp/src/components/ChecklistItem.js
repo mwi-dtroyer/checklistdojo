@@ -9,10 +9,16 @@ export default ({
   toggleModal
 }) => (
   <li>
-    <input type={type} name={name} checked={checked} onChange={onCheck} />{" "}
+    <input
+      className="fancyCheck"
+      type={type}
+      name={name}
+      checked={checked}
+      onChange={onCheck}
+    />{" "}
     {text} {"   "}
-    <button name={name} onClick={toggleModal}>
-      -
+    <button className="removeItem" name={name} onClick={toggleModal}>
+      delete
     </button>
   </li>
 );
