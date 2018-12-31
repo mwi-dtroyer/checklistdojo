@@ -37,20 +37,17 @@ export default class ChecklistInstance extends Component {
     });
   };
 
-  handleListItemImport = () => {
-    console.log("Import");
-  };
-
-  handleListItemExport = () => {
-    console.log("Export");
-  };
-
-  handleListItemDuplicate = () => {
-    console.log("Duplicate");
-  };
-
   handleListItemDelete = () => {
     console.log("Delete");
+  };
+
+  handleListItemCompleteAll = () => {
+    console.log("Complete All");
+    var items = this.state.items;
+    items.map(i => (i.checked = true));
+    this.setState({
+      items: items
+    });
   };
 
   handleListItemCancle = () => {
@@ -114,7 +111,12 @@ export default class ChecklistInstance extends Component {
           ) : (
             <div>
               <button onClick={this.handleListItemAdd}>+ Add</button>
+              <br />
               <button onClick={this.handleListItemDelete}>Delete</button>
+              <br />
+              <button onClick={this.handleListItemCompleteAll}>
+                Complete All
+              </button>
             </div>
           )}
         </div>
