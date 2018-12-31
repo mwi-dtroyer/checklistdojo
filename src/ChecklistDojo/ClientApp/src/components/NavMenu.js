@@ -33,9 +33,10 @@ export class NavMenu extends Component {
                 <Glyphicon glyph="th-list" /> Fetch data
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={"/Instance/thisname"}>
+            {/* Calling this sample checklist for the time being, since it's hard coded.*/}
+            <LinkContainer to={"/Checklist/some-significant-guid"}>
               <NavItem>
-                <Glyphicon glyph="th-list" /> Instance
+                <Glyphicon glyph="check" /> Sample Checklist
               </NavItem>
             </LinkContainer>
           </Nav>
