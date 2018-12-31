@@ -7,14 +7,14 @@ import { Counter } from "./components/Counter";
 import ChecklistInstance from "./components/ChecklistInstance";
 
 export default class App extends Component {
-  displayName = App.name;
+  static displayName = App.name;
 
   render() {
     return (
       <Layout>
         <Route exact path="/" component={Home} />
         <Route path="/counter" component={Counter} />
-        <Route path="/fetchdata" component={FetchData} />
+        <Route path="/fetch-data" component={FetchData} />
         <Route path="/Checklist/:guid" component={ChecklistInstance} />
       </Layout>
     );
