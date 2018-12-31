@@ -37,12 +37,19 @@ export default class ChecklistInstance extends Component {
     });
   };
 
-  handleListItemDelete = () => {
+  handleListItemDelete = event => {
     console.log("Delete");
+    console.log(event);
+    var items = this.state.items;
+    items = items.filter(function(value) {
+      return value.key != event.target.name;
+    });
+    this.setState({
+      items: items
+    });
   };
 
   handleListItemCompleteAll = () => {
-    console.log("Complete All");
     var items = this.state.items;
     items.map(i => (i.checked = true));
     this.setState({
@@ -90,7 +97,8 @@ export default class ChecklistInstance extends Component {
               checked={i.checked}
               name={i.key}
               key={i.key}
-              onChange={this.handleListItemCheck}
+              onCheck={this.handleListItemCheck}
+              onDelete={this.handleListItemDelete}
             />
           ))}
           {addItem ? (
@@ -111,8 +119,6 @@ export default class ChecklistInstance extends Component {
           ) : (
             <div>
               <button onClick={this.handleListItemAdd}>+ Add</button>
-              <br />
-              <button onClick={this.handleListItemDelete}>Delete</button>
               <br />
               <button onClick={this.handleListItemCompleteAll}>
                 Complete All
