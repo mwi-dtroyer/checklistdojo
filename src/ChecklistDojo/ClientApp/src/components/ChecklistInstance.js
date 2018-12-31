@@ -114,9 +114,6 @@ export default class ChecklistInstance extends Component {
           ) : (
             <div>
               <button onClick={this.handleListItemAdd}>+ Add</button>
-              <button onClick={this.handleListItemImport}>Import</button>
-              <button onClick={this.handleListItemExport}>Export</button>
-              <button onClick={this.handleListItemDuplicate}>Duplicate</button>
               <button onClick={this.handleListItemDelete}>Delete</button>
             </div>
           )}
