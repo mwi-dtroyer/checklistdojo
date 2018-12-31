@@ -37,6 +37,22 @@ export default class ChecklistInstance extends Component {
     });
   };
 
+  handleListItemImport = () => {
+    console.log("Import");
+  };
+
+  handleListItemExport = () => {
+    console.log("Export");
+  };
+
+  handleListItemDuplicate = () => {
+    console.log("Duplicate");
+  };
+
+  handleListItemDelete = () => {
+    console.log("Delete");
+  };
+
   handleListItemCancle = () => {
     this.setState({
       addItem: false
@@ -45,7 +61,7 @@ export default class ChecklistInstance extends Component {
 
   handleListItemSubmit = event => {
     var keypressed = event.keyCode || event.which;
-    if (keypressed == 13) {
+    if (keypressed === 13) {
       var items = this.state.items;
       items.push({
         key: items.length,
@@ -96,7 +112,13 @@ export default class ChecklistInstance extends Component {
           {addItem ? (
             <button onClick={this.handleListItemCancle}>Cancle</button>
           ) : (
-            <button onClick={this.handleListItemAdd}>+ Add</button>
+            <div>
+              <button onClick={this.handleListItemAdd}>+ Add</button>
+              <button onClick={this.handleListItemImport}>Import</button>
+              <button onClick={this.handleListItemExport}>Export</button>
+              <button onClick={this.handleListItemDuplicate}>Duplicate</button>
+              <button onClick={this.handleListItemDelete}>Delete</button>
+            </div>
           )}
         </div>
       </div>
