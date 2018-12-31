@@ -17,7 +17,7 @@ export class Home extends Component {
                 className="text-medium"
                 to="/Checklist/some-significant-guid"
               >
-                Example Template
+                Sample Checklist
               </NavLink>
             </NavItem>
           </li>
