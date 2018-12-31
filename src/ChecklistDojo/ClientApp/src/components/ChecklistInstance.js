@@ -26,7 +26,6 @@ export default class ChecklistInstance extends Component {
     };
   }
   toggleModal = event => {
-    console.log(event.target.name);
     this.setState({
       showModal: !this.state.showModal,
       deleteKey: event.target.name
@@ -100,7 +99,7 @@ export default class ChecklistInstance extends Component {
         TODO: Use a combination of css grid and stylesheets for handling our item layout.
         An unordered list looks a bit drab.
         */}
-        <ul>
+        <ul className="undressed">
           {items.map(i => (
             <ChecklistItem
               text={i.text}
@@ -125,13 +124,20 @@ export default class ChecklistInstance extends Component {
 
         <div id="header-content">
           {addItem ? (
-            <button onClick={this.handleListItemCancle}>Cancle</button>
+            <button className="decline" onClick={this.handleListItemCancle}>
+              Cancle
+            </button>
           ) : (
             <div>
-              <button onClick={this.handleListItemAdd}>+ Add</button>
+              <button className="accept" onClick={this.handleListItemAdd}>
+                + Add
+              </button>
               <br />
               {items.length > 0 ? (
-                <button onClick={this.handleListItemCompleteAll}>
+                <button
+                  className="careful"
+                  onClick={this.handleListItemCompleteAll}
+                >
                   Complete All
                 </button>
               ) : null}
