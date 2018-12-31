@@ -33,7 +33,7 @@ export class NavMenu extends Component {
     return (
       <header>
         <Navbar
-          className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3"
+          className="navbar-expand-md navbar-toggleable-md ng-white border-bottom box-shadow mb-3"
           light
         >
           <Container>
@@ -42,33 +42,34 @@ export class NavMenu extends Component {
             </NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse
-              className="d-sm-inline-flex flex-sm-row-reverse"
+              className="d-md-inline-flex flex-md-row-reverse"
               isOpen={!this.state.collapsed}
               navbar
             >
               <ul className="navbar-nav flex-grow">
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/">
-                    Home
+                    Dashboard
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/counter">
-                    Counter
+                  <NavLink tag={Link} className="text-dark" to="/templates">
+                    Templates
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-data">
-                    Fetch data
+                  <NavLink tag={Link} className="text-dark" to="/scheduled">
+                    Scheduled
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink
-                    tag={Link}
-                    className="text-dark"
-                    to="/Checklist/some-significant-guid"
-                  >
-                    Sample Checklist
+                  <NavLink tag={Link} className="text-dark" to="/history">
+                    History
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/settings">
+                    Settings
                   </NavLink>
                 </NavItem>
               </ul>
