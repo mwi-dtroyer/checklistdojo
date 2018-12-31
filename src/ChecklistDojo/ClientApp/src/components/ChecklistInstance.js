@@ -1,6 +1,7 @@
 ﻿import React, { Component } from "react";
 import ChecklistItem from "./ChecklistItem";
-import "./NavMenu.css";
+import "./ChecklistInstance.css";
+import Modal from "./modal";
 
 export default class ChecklistInstance extends Component {
   displayName = ChecklistInstance.name;
@@ -12,6 +13,8 @@ export default class ChecklistInstance extends Component {
     // the metadata we'll need for database idos, user idos, etc
     this.state = {
       addItem: false,
+      showModal: false,
+      deleteKey: null,
       title: "Get Rich Quick Scheme",
       description: "A fast and easy three step path to financial success",
       items: [
@@ -22,7 +25,13 @@ export default class ChecklistInstance extends Component {
       ]
     };
   }
-
+  toggleModal = event => {
+    console.log(event.target.name);
+    this.setState({
+      showModal: !this.state.showModal,
+      deleteKey: event.target.name
+    });
+  };
   handleListItemCheck = event => {
     var items = this.state.items;
     items[event.target.name].checked = event.target.checked;
@@ -37,13 +46,16 @@ export default class ChecklistInstance extends Component {
     });
   };
 
-  handleListItemDelete = event => {
+  handleListItemDelete = () => {
     var items = this.state.items;
+    var key = this.state.deleteKey;
     items = items.filter(function(value) {
-      return value.key != event.target.name;
+      return value.key != key;
     });
     this.setState({
-      items: items
+      items: items,
+      deleteKey: null,
+      showModal: !this.state.showModal
     });
   };
 
@@ -79,7 +91,7 @@ export default class ChecklistInstance extends Component {
     }
   };
   render() {
-    const { title, description, items, addItem } = this.state;
+    const { title, description, items, addItem, showModal } = this.state;
     return (
       <div>
         <h1>{title}</h1>
@@ -96,7 +108,7 @@ export default class ChecklistInstance extends Component {
               name={i.key}
               key={i.key}
               onCheck={this.handleListItemCheck}
-              onDelete={this.handleListItemDelete}
+              toggleModal={this.toggleModal}
             />
           ))}
           {addItem ? (
@@ -126,6 +138,13 @@ export default class ChecklistInstance extends Component {
             </div>
           )}
         </div>
+        {showModal ? (
+          <Modal>
+            <h1>You are about to remove an item!</h1>
+            <button onClick={this.handleListItemDelete}>Remove</button>
+            <button onClick={this.toggleModal}>Keep</button>
+          </Modal>
+        ) : null}
       </div>
     );
   }

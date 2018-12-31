@@ -6,12 +6,12 @@ export default ({
   checked,
   onCheck,
   text,
-  onDelete
+  toggleModal
 }) => (
   <li>
     <input type={type} name={name} checked={checked} onChange={onCheck} />{" "}
     {text} {"   "}
-    <button name={name} onClick={onDelete}>
+    <button name={name} onClick={toggleModal}>
       -
     </button>
   </li>

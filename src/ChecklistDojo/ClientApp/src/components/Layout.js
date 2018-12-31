@@ -13,9 +13,11 @@ export class Layout extends Component {
             <NavMenu />
           </Col>
           <Col sm={9}>
-            {this.props.children}
+                    {this.props.children}
+          <div id="modal" />
           </Col>
-        </Row>
+            </Row>
+          
       </Grid>
     );
   }
