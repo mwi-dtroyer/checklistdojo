@@ -62,7 +62,6 @@ export default class ChecklistInstance extends Component {
   };
   render() {
     const { title, description, items, addItem } = this.state;
-    console.log(addItem);
     return (
       <div>
         <h1>{title}</h1>
