@@ -1,24 +1,19 @@
 import React from "react";
 
-export default ({
-  type = "checkbox",
-  name,
-  checked,
-  onCheck,
-  text,
-  deleteItem
-}) => (
+export default ({ id, checked, onCheck, text, deleteItem }) => (
   <li>
-    <input
-      className="fancyCheck"
-      type={type}
-      name={name}
-      checked={checked}
-      onChange={onCheck}
+    <i
+      className={
+        checked
+          ? "fa fa-check-square-o clickableIcons"
+          : "fa fa-square-o clickableIcons"
+      }
+      id={id}
+      onClick={onCheck}
     />{" "}
     {text} {"   "}
-    <button className="removeItem" name={name} onClick={deleteItem}>
-      <i class="fa fa-trash-o" aria-hidden="true" />
+    <button className="buttonsWithIcons" name={id} onClick={deleteItem}>
+      <i className="fa fa-trash-o clickableIcons" aria-hidden="true" />
     </button>
   </li>
 );

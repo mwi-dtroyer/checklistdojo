@@ -25,8 +25,12 @@ export default class ChecklistInstance extends Component {
   }
 
   handleListItemCheck = event => {
-    var items = this.state.items;
-    items[event.target.name].checked = event.target.checked;
+    var items = this.state.items.filter(function(value) {
+      if (value.key == event.target.id) {
+        value.checked = !value.checked;
+      }
+      return value;
+    });
     this.setState({
       items: items
     });
@@ -39,9 +43,14 @@ export default class ChecklistInstance extends Component {
   };
 
   handleListItemDelete = event => {
+    var key =
+      event.target.name == null
+        ? event.target.parentNode.name
+        : event.target.name;
+    console.log(key);
     var items = this.state.items;
     items = items.filter(function(value) {
-      return value.key != event.target.name;
+      return value.key != key;
     });
     this.setState({
       items: items
@@ -104,7 +113,7 @@ export default class ChecklistInstance extends Component {
             <ChecklistItem
               text={i.text}
               checked={i.checked}
-              name={i.key}
+              id={i.key}
               key={i.key}
               onCheck={this.handleListItemCheck}
               deleteItem={this.handleListItemDelete}
@@ -126,17 +135,32 @@ export default class ChecklistInstance extends Component {
         <div id="header-content">
           {addItem ? (
             <div>
-              <button className="decline" onClick={this.handleListItemCancle}>
-                <i class="fa fa-ban" aria-hidden="true" />
+              <button
+                className="buttonsWithIcons"
+                onClick={this.handleListItemCancle}
+              >
+                <i className="fa fa-ban clickableIcons" aria-hidden="true" />
               </button>
-              <button className="accept" onClick={this.handleListItemSubmit}>
-                <i class="fa fa-plus-circle" aria-hidden="true" />
+              <button
+                className="buttonsWithIcons"
+                onClick={this.handleListItemSubmit}
+              >
+                <i
+                  className="fa fa-plus-circle clickableIcons"
+                  aria-hidden="true"
+                />
               </button>
             </div>
           ) : (
             <div>
-              <button className="accept" onClick={this.handleListItemAdd}>
-                <i class="fa fa-plus-circle" aria-hidden="true" />
+              <button
+                className="buttonsWithIcons"
+                onClick={this.handleListItemAdd}
+              >
+                <i
+                  className="fa fa-plus-circle clickableIcons"
+                  aria-hidden="true"
+                />
               </button>
               <br />
               {items.length > 0 ? (
