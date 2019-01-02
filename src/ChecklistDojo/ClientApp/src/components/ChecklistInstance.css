@@ -24,4 +24,5 @@ i.clickableIcons {
 
 .grayed {
   color: gray;
+  pointer-events: none;
 }

@@ -10,13 +10,13 @@ export default ({ id, checked, onCheck, text, deleteItem, finished }) => (
         (finished ? " grayed" : "")
       }
       id={id}
-      onClick={finished ? null : onCheck}
+      onClick={onCheck}
     />{" "}
     {text} {"   "}
     <button
-      className="buttonsWithIcons"
+      className={"buttonsWithIcons" + (finished ? " grayed" : "")}
       name={id}
-      onClick={finished ? null : deleteItem}
+      onClick={deleteItem}
     >
       <i
         className={"fa fa-trash-o clickableIcons" + (finished ? " grayed" : "")}
