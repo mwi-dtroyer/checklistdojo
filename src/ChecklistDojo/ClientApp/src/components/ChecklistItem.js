@@ -6,7 +6,7 @@ export default ({
   checked,
   onCheck,
   text,
-  toggleModal
+  deleteItem
 }) => (
   <li>
     <input
@@ -17,8 +17,8 @@ export default ({
       onChange={onCheck}
     />{" "}
     {text} {"   "}
-    <button className="removeItem" name={name} onClick={toggleModal}>
-      delete
+    <button className="removeItem" name={name} onClick={deleteItem}>
+      <i class="fa fa-trash-o" aria-hidden="true" />
     </button>
   </li>
 );

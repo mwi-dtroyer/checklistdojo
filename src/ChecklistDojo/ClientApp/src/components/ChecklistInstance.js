@@ -1,7 +1,6 @@
 ﻿import React, { Component } from "react";
 import ChecklistItem from "./ChecklistItem";
 import "./ChecklistInstance.css";
-import Modal from "./modal";
 
 export default class ChecklistInstance extends Component {
   displayName = ChecklistInstance.name;
@@ -13,8 +12,6 @@ export default class ChecklistInstance extends Component {
     // the metadata we'll need for database idos, user idos, etc
     this.state = {
       addItem: false,
-      showModal: false,
-      deleteKey: null,
       title: "Get Rich Quick Scheme",
       description: "A fast and easy three step path to financial success",
       items: [
@@ -25,12 +22,7 @@ export default class ChecklistInstance extends Component {
       ]
     };
   }
-  toggleModal = event => {
-    this.setState({
-      showModal: !this.state.showModal,
-      deleteKey: event.target.name
-    });
-  };
+
   handleListItemCheck = event => {
     var items = this.state.items;
     items[event.target.name].checked = event.target.checked;
@@ -45,16 +37,13 @@ export default class ChecklistInstance extends Component {
     });
   };
 
-  handleListItemDelete = () => {
+  handleListItemDelete = event => {
     var items = this.state.items;
-    var key = this.state.deleteKey;
     items = items.filter(function(value) {
-      return value.key != key;
+      return value.key != event.target.name;
     });
     this.setState({
-      items: items,
-      deleteKey: null,
-      showModal: !this.state.showModal
+      items: items
     });
   };
 
@@ -72,7 +61,7 @@ export default class ChecklistInstance extends Component {
     });
   };
 
-  handleListItemSubmit = event => {
+  handleListItemKeyPress = event => {
     var keypressed = event.keyCode || event.which;
     if (keypressed === 13) {
       var items = this.state.items;
@@ -89,10 +78,28 @@ export default class ChecklistInstance extends Component {
       });
     }
   };
+  handleListItemSubmit = () => {
+    var items = this.state.items;
+    items.push({
+      key: items.length,
+      text: document.getElementById("newCheckListItem").value,
+      checked: false
+    });
+    document.getElementById("newCheckListItem").value = "";
+
+    this.setState({
+      items: items,
+      addItem: false
+    });
+  };
   render() {
     const { title, description, items, addItem, showModal } = this.state;
     return (
       <div>
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
         <h1>{title}</h1>
         <p>{description}</p>
         <ul className="undressed">
@@ -103,16 +110,17 @@ export default class ChecklistInstance extends Component {
               name={i.key}
               key={i.key}
               onCheck={this.handleListItemCheck}
-              toggleModal={this.toggleModal}
+              deleteItem={this.handleListItemDelete}
             />
           ))}
           {addItem ? (
             <li>
-              <input type="checkbox" disabled="true" />{" "}
+              <input className="fancyCheck" type="checkbox" disabled={true} />{" "}
               <input
+                id="newCheckListItem"
                 type="text"
                 placeholder="Press Enter When Done"
-                onKeyDown={this.handleListItemSubmit}
+                onKeyDown={this.handleListItemKeyPress}
               />
             </li>
           ) : null}
@@ -120,13 +128,18 @@ export default class ChecklistInstance extends Component {
 
         <div id="header-content">
           {addItem ? (
-            <button className="decline" onClick={this.handleListItemCancle}>
-              Cancle
-            </button>
+            <div>
+              <button className="decline" onClick={this.handleListItemCancle}>
+                <i class="fa fa-ban" aria-hidden="true" />
+              </button>
+              <button className="accept" onClick={this.handleListItemSubmit}>
+                <i class="fa fa-plus-circle" aria-hidden="true" />
+              </button>
+            </div>
           ) : (
             <div>
               <button className="accept" onClick={this.handleListItemAdd}>
-                + Add
+                <i class="fa fa-plus-circle" aria-hidden="true" />
               </button>
               <br />
               {items.length > 0 ? (
@@ -134,23 +147,12 @@ export default class ChecklistInstance extends Component {
                   className="careful"
                   onClick={this.handleListItemCompleteAll}
                 >
-                  Complete All
+                  Complete
                 </button>
               ) : null}
             </div>
           )}
         </div>
-        {showModal ? (
-          <Modal>
-            <h1>You are about to remove an item from the list!</h1>
-            <button className="decline" onClick={this.handleListItemDelete}>
-              Remove
-            </button>{" "}
-            <button className="accept" onClick={this.toggleModal}>
-              Keep
-            </button>
-          </Modal>
-        ) : null}
       </div>
     );
   }
