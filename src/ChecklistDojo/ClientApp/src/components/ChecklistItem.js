@@ -4,9 +4,10 @@ export default ({ id, checked, onCheck, text, deleteItem, finished }) => (
   <li>
     <i
       className={
-        checked
-          ? "fa fa-check-square-o clickableIcons"
-          : "fa fa-square-o clickableIcons"
+        "fa fa" +
+        (checked ? "-check" : "") +
+        "-square-o clickableIcons" +
+        (finished ? " grayed" : "")
       }
       id={id}
       onClick={finished ? null : onCheck}
@@ -17,7 +18,10 @@ export default ({ id, checked, onCheck, text, deleteItem, finished }) => (
       name={id}
       onClick={finished ? null : deleteItem}
     >
-      <i className="fa fa-trash-o clickableIcons" aria-hidden="true" />
+      <i
+        className={"fa fa-trash-o clickableIcons" + (finished ? " grayed" : "")}
+        aria-hidden="true"
+      />
     </button>
   </li>
 );

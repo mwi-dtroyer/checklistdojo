@@ -21,3 +21,7 @@ button.buttonsWithIcons {
 i.clickableIcons {
   cursor: pointer;
 }
+
+.grayed {
+  color: gray;
+}
