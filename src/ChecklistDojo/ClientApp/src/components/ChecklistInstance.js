@@ -1,6 +1,7 @@
 ﻿import React, { Component } from "react";
 import ChecklistItem from "./ChecklistItem";
 import ChecklistCompletion from "./ChecklistCompletion";
+import CompleteAllButton from "./CompleteAllButton";
 import "./ChecklistInstance.css";
 import "./FontAwesome.css";
 
@@ -71,6 +72,12 @@ export default class ChecklistInstance extends Component {
     });
   };
 
+  handleListItemReOpen = () => {
+    this.setState({
+      finished: false
+    });
+  };
+
   handleListItemCancle = () => {
     this.setState({
       addItem: false
@@ -129,6 +136,7 @@ export default class ChecklistInstance extends Component {
               key={i.key}
               onCheck={this.handleListItemCheck}
               deleteItem={this.handleListItemDelete}
+              finished={finished}
             />
           ))}
           {addItem ? (
@@ -165,24 +173,32 @@ export default class ChecklistInstance extends Component {
             </div>
           ) : (
             <div>
-              <button
-                className="buttonsWithIcons"
-                onClick={this.handleListItemAdd}
-              >
-                <i
-                  className="fa fa-plus-circle clickableIcons"
-                  aria-hidden="true"
+              {finished ? (
+                <CompleteAllButton
+                  finished={finished}
+                  handleListItemCompleteAll={this.handleListItemCompleteAll}
+                  handleListItemReOpen={this.handleListItemReOpen}
                 />
-              </button>
-              <br />
-              {items.length > 0 ? (
-                <button
-                  className="careful"
-                  onClick={this.handleListItemCompleteAll}
-                >
-                  Complete
-                </button>
-              ) : null}
+              ) : (
+                <div>
+                  {" "}
+                  <button
+                    className="buttonsWithIcons"
+                    onClick={this.handleListItemAdd}
+                  >
+                    <i
+                      className="fa fa-plus-circle clickableIcons"
+                      aria-hidden="true"
+                    />
+                  </button>
+                  <br />
+                  <CompleteAllButton
+                    finished={finished}
+                    handleListItemCompleteAll={this.handleListItemCompleteAll}
+                    handleListItemReOpen={this.handleListItemReOpen}
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>
