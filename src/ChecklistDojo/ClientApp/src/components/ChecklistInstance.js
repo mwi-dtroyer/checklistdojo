@@ -2,6 +2,7 @@
 import ChecklistItem from "./ChecklistItem";
 import ChecklistCompletion from "./ChecklistCompletion";
 import CompleteAllButton from "./CompleteAllButton";
+import AddConfirmCancel from "./AddConfirmCancel";
 import "./ChecklistInstance.css";
 import "./FontAwesome.css";
 
@@ -68,7 +69,8 @@ export default class ChecklistInstance extends Component {
 
   handleListItemCompleteAll = () => {
     this.setState({
-      finished: true
+      finished: true,
+      addItem: false
     });
   };
 
@@ -153,54 +155,19 @@ export default class ChecklistInstance extends Component {
         </ul>
 
         <div id="header-content">
-          {addItem ? (
-            <div>
-              <button
-                className="buttonsWithIcons"
-                onClick={this.handleListItemCancle}
-              >
-                <i className="fa fa-ban clickableIcons" aria-hidden="true" />
-              </button>
-              <button
-                className="buttonsWithIcons"
-                onClick={this.handleListItemSubmit}
-              >
-                <i
-                  className="fa fa-plus-circle clickableIcons"
-                  aria-hidden="true"
-                />
-              </button>
-            </div>
-          ) : (
-            <div>
-              {finished ? (
-                <CompleteAllButton
-                  finished={finished}
-                  handleListItemCompleteAll={this.handleListItemCompleteAll}
-                  handleListItemReOpen={this.handleListItemReOpen}
-                />
-              ) : (
-                <div>
-                  {" "}
-                  <button
-                    className="buttonsWithIcons"
-                    onClick={this.handleListItemAdd}
-                  >
-                    <i
-                      className="fa fa-plus-circle clickableIcons"
-                      aria-hidden="true"
-                    />
-                  </button>
-                  <br />
-                  <CompleteAllButton
-                    finished={finished}
-                    handleListItemCompleteAll={this.handleListItemCompleteAll}
-                    handleListItemReOpen={this.handleListItemReOpen}
-                  />
-                </div>
-              )}
-            </div>
-          )}
+          <AddConfirmCancel
+            finished={finished}
+            addItem={addItem}
+            handleListItemCancle={this.handleListItemCancle}
+            handleListItemSubmit={this.handleListItemSubmit}
+            handleListItemAdd={this.handleListItemAdd}
+          />
+
+          <CompleteAllButton
+            finished={finished}
+            handleListItemCompleteAll={this.handleListItemCompleteAll}
+            handleListItemReOpen={this.handleListItemReOpen}
+          />
         </div>
       </div>
     );
