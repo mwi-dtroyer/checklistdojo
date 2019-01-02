@@ -1,5 +1,6 @@
 ﻿import React, { Component } from "react";
 import ChecklistItem from "./ChecklistItem";
+import ChecklistCompletion from "./ChecklistCompletion";
 import "./ChecklistInstance.css";
 import "./FontAwesome.css";
 
@@ -12,6 +13,7 @@ export default class ChecklistInstance extends Component {
     // This should work as our general core format for a checklist, though it is missing
     // the metadata we'll need for database idos, user idos, etc
     this.state = {
+      finished: false,
       addItem: false,
       title: "Get Rich Quick Scheme",
       description: "A fast and easy three step path to financial success",
@@ -31,8 +33,12 @@ export default class ChecklistInstance extends Component {
       }
       return value;
     });
+    var unfinished = items.filter(function(value) {
+      return value.checked == false;
+    }).length;
     this.setState({
-      items: items
+      items: items,
+      finished: unfinished == 0
     });
   };
 
@@ -47,21 +53,21 @@ export default class ChecklistInstance extends Component {
       event.target.name == null
         ? event.target.parentNode.name
         : event.target.name;
-    console.log(key);
-    var items = this.state.items;
-    items = items.filter(function(value) {
+    var items = this.state.items.filter(function(value) {
       return value.key != key;
     });
+    var unfinished = items.filter(function(value) {
+      return value.checked == false;
+    }).length;
     this.setState({
-      items: items
+      items: items,
+      finished: unfinished == 0
     });
   };
 
   handleListItemCompleteAll = () => {
-    var items = this.state.items;
-    items.map(i => (i.checked = true));
     this.setState({
-      items: items
+      finished: true
     });
   };
 
@@ -84,7 +90,8 @@ export default class ChecklistInstance extends Component {
 
       this.setState({
         items: items,
-        addItem: false
+        addItem: false,
+        finished: false
       });
     }
   };
@@ -99,14 +106,19 @@ export default class ChecklistInstance extends Component {
 
     this.setState({
       items: items,
-      addItem: false
+      addItem: false,
+      finished: false
     });
   };
+
   render() {
-    const { title, description, items, addItem } = this.state;
+    const { title, description, items, addItem, finished } = this.state;
     return (
       <div>
-        <h1>{title}</h1>
+        <h1>
+          {title} <ChecklistCompletion finished={finished} />
+        </h1>
+
         <p>{description}</p>
         <ul className="undressed">
           {items.map(i => (
