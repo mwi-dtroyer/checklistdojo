@@ -1,6 +1,7 @@
 ﻿import React, { Component } from "react";
 import ChecklistItem from "./ChecklistItem";
 import "./ChecklistInstance.css";
+import "./FontAwesome.css";
 
 export default class ChecklistInstance extends Component {
   displayName = ChecklistInstance.name;
@@ -96,10 +97,6 @@ export default class ChecklistInstance extends Component {
     const { title, description, items, addItem, showModal } = this.state;
     return (
       <div>
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
         <h1>{title}</h1>
         <p>{description}</p>
         <ul className="undressed">
