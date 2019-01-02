@@ -103,7 +103,7 @@ export default class ChecklistInstance extends Component {
     });
   };
   render() {
-    const { title, description, items, addItem, showModal } = this.state;
+    const { title, description, items, addItem } = this.state;
     return (
       <div>
         <h1>{title}</h1>
