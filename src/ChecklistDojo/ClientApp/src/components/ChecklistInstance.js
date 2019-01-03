@@ -44,12 +44,6 @@ export default class ChecklistInstance extends Component {
     });
   };
 
-  handleListItemAdd = () => {
-    this.setState({
-      addItem: true
-    });
-  };
-
   handleListItemDelete = event => {
     var key =
       event.target.name == null
@@ -64,25 +58,6 @@ export default class ChecklistInstance extends Component {
     this.setState({
       items: items,
       finished: unfinished == 0
-    });
-  };
-
-  handleListItemCompleteAll = () => {
-    this.setState({
-      finished: true,
-      addItem: false
-    });
-  };
-
-  handleListItemReOpen = () => {
-    this.setState({
-      finished: false
-    });
-  };
-
-  handleListItemCancel = () => {
-    this.setState({
-      addItem: false
     });
   };
 
@@ -106,6 +81,7 @@ export default class ChecklistInstance extends Component {
       });
     }
   };
+
   handleListItemSubmit = () => {
     const items = [
       ...this.state.items,
@@ -162,15 +138,32 @@ export default class ChecklistInstance extends Component {
           <AddConfirmCancel
             finished={finished}
             addItem={addItem}
-            handleListItemCancel={this.handleListItemCancel}
+            handleListItemCancel={() => {
+              this.setState({
+                addItem: false
+              });
+            }}
             handleListItemSubmit={this.handleListItemSubmit}
-            handleListItemAdd={this.handleListItemAdd}
+            handleListItemAdd={() => {
+              this.setState({
+                addItem: true
+              });
+            }}
           />
 
           <CompleteAllButton
             finished={finished}
-            handleListItemCompleteAll={this.handleListItemCompleteAll}
-            handleListItemReOpen={this.handleListItemReOpen}
+            handleListItemCompleteAll={() => {
+              this.setState({
+                finished: true,
+                addItem: false
+              });
+            }}
+            handleListItemReOpen={() => {
+              this.setState({
+                finished: false
+              });
+            }}
           />
         </div>
       </div>
