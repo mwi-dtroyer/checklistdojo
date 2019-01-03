@@ -80,7 +80,7 @@ export default class ChecklistInstance extends Component {
     });
   };
 
-  handleListItemCancle = () => {
+  handleListItemCancel = () => {
     this.setState({
       addItem: false
     });
@@ -158,7 +158,7 @@ export default class ChecklistInstance extends Component {
           <AddConfirmCancel
             finished={finished}
             addItem={addItem}
-            handleListItemCancle={this.handleListItemCancle}
+            handleListItemCancel={this.handleListItemCancel}
             handleListItemSubmit={this.handleListItemSubmit}
             handleListItemAdd={this.handleListItemAdd}
           />

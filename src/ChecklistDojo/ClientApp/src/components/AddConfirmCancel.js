@@ -3,7 +3,7 @@ import React from "react";
 export default ({
   finished,
   addItem,
-  handleListItemCancle,
+  handleListItemCancel,
   handleListItemSubmit,
   handleListItemAdd
 }) => (
@@ -11,7 +11,7 @@ export default ({
     {addItem ? (
       <button
         className={"buttonsWithIcons" + (finished ? " grayed" : "")}
-        onClick={handleListItemCancle}
+        onClick={handleListItemCancel}
       >
         <i
           className={"fa fa-ban clickableIcons" + (finished ? " grayed" : "")}
