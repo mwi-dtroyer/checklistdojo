@@ -17,6 +17,7 @@ export default class ChecklistInstance extends Component {
     this.state = {
       finished: false,
       addItem: false,
+      newItemText: "",
       title: "Get Rich Quick Scheme",
       description: "A fast and easy three step path to financial success",
       items: [
@@ -79,6 +80,10 @@ export default class ChecklistInstance extends Component {
         addItem: false,
         finished: false
       });
+    } else {
+      this.setState({
+        newItemText: event.target.value
+      });
     }
   };
 
@@ -87,16 +92,16 @@ export default class ChecklistInstance extends Component {
       ...this.state.items,
       {
         key: this.state.items.length,
-        text: document.getElementById("newCheckListItem").value,
+        text: this.state.newItemText,
         checked: false
       }
     ];
-    document.getElementById("newCheckListItem").value = "";
 
     this.setState({
       items: items,
       addItem: false,
-      finished: false
+      finished: false,
+      newItemText: ""
     });
   };
 
