@@ -1,4 +1,4 @@
-ul.undressed {
+ul.removeBullets {
   list-style-type: none;
   padding: 0;
 }

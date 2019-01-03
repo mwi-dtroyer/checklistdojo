@@ -129,7 +129,7 @@ export default class ChecklistInstance extends Component {
         </h1>
 
         <p>{description}</p>
-        <ul className="undressed">
+        <ul className="removeBullets">
           {items.map(i => (
             <ChecklistItem
               text={i.text}
