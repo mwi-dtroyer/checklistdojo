@@ -5,6 +5,7 @@ import CompleteAllButton from "./CompleteAllButton";
 import AddConfirmCancel from "./AddConfirmCancel";
 import "./ChecklistInstance.css";
 import "./FontAwesome.css";
+import NewCheckListItem from "./NewListItemTextbox";
 
 export default class ChecklistInstance extends Component {
   displayName = ChecklistInstance.name;
@@ -17,7 +18,6 @@ export default class ChecklistInstance extends Component {
     this.state = {
       finished: false,
       addItem: false,
-      newItemText: "",
       title: "Get Rich Quick Scheme",
       description: "A fast and easy three step path to financial success",
       items: [
@@ -62,37 +62,12 @@ export default class ChecklistInstance extends Component {
     });
   };
 
-  handleListItemKeyPress = event => {
-    var keypressed = event.keyCode || event.which;
-    if (keypressed === 13) {
-      const items = [
-        ...this.state.items,
-        {
-          key: this.state.items.length,
-          text: event.target.value,
-          checked: false
-        }
-      ];
-      event.target.value = "";
-
-      this.setState({
-        items: items,
-        addItem: false,
-        finished: false
-      });
-    } else {
-      this.setState({
-        newItemText: event.target.value
-      });
-    }
-  };
-
-  handleListItemSubmit = () => {
+  handleListItemSubmit = value => {
     const items = [
       ...this.state.items,
       {
         key: this.state.items.length,
-        text: this.state.newItemText,
+        text: value,
         checked: false
       }
     ];
@@ -100,8 +75,7 @@ export default class ChecklistInstance extends Component {
     this.setState({
       items: items,
       addItem: false,
-      finished: false,
-      newItemText: ""
+      finished: false
     });
   };
 
@@ -127,15 +101,9 @@ export default class ChecklistInstance extends Component {
             />
           ))}
           {addItem ? (
-            <li>
-              <input className="fancyCheck" type="checkbox" disabled={true} />{" "}
-              <input
-                id="newCheckListItem"
-                type="text"
-                placeholder="Press Enter When Done"
-                onKeyDown={this.handleListItemKeyPress}
-              />
-            </li>
+            <NewCheckListItem
+              handleListItemSubmit={this.handleListItemSubmit}
+            />
           ) : null}
         </ul>
 
