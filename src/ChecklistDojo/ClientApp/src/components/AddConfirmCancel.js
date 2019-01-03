@@ -10,23 +10,23 @@ export default ({
   <div>
     {addItem ? (
       <button
-        className={"buttonsWithIcons" + (finished ? " grayed" : "")}
+        className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
         onClick={handleListItemCancel}
       >
         <i
-          className={"fa fa-ban clickableIcons" + (finished ? " grayed" : "")}
+          className={`fa fa-ban clickableIcons ${finished ? "grayed" : ""}`}
           aria-hidden="true"
         />
       </button>
     ) : null}
     <button
-      className={"buttonsWithIcons" + (finished ? " grayed" : "")}
+      className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
       onClick={addItem ? handleListItemSubmit : handleListItemAdd}
     >
       <i
-        className={
-          "fa fa-plus-circle clickableIcons" + (finished ? " grayed" : "")
-        }
+        className={`fa fa-plus-circle clickableIcons  ${
+          finished ? "grayed" : ""
+        }`}
         aria-hidden="true"
       />
     </button>
