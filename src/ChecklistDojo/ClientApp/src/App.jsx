@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import { Route } from "react-router";
 import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
-import Callback from "./Callback/Callback";
+import LoadingIndicator from "./components/LoadingIndicator";
 import ChecklistHistory from "./components/ChecklistHistory";
 import Settings from "./components/Settings";
 import ChecklistInstance from "./components/ChecklistInstance";
 import Templates from "./components/Templates";
 import Scheduled from "./components/Scheduled";
-
-//import "./App.css";
 
 class App extends Component {
   static displayName = App.name;
@@ -34,7 +32,7 @@ class App extends Component {
               this.props.auth.handleAuthentication();
             }
 
-            return <Callback {...props} />;
+            return <LoadingIndicator {...props} />;
           }}
         />
       </Layout>
