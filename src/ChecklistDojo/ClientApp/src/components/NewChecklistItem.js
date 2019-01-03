@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-export default class newCheckListItem extends Component {
-  displayName = newCheckListItem.name;
+export default class NewChecklistItem extends Component {
+  displayName = NewChecklistItem.name;
 
   constructor(props) {
     super(props);
@@ -29,7 +29,6 @@ export default class newCheckListItem extends Component {
         <li>
           <input className="fancyCheck" type="checkbox" disabled={true} />{" "}
           <input
-            id="newCheckListItem"
             type="text"
             placeholder="Press Enter When Done"
             onKeyDown={this.handleListItemKeyPress}

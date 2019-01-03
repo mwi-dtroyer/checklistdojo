@@ -5,7 +5,7 @@ import CompleteAllButton from "./CompleteAllButton";
 import AddConfirmCancel from "./AddConfirmCancel";
 import "./ChecklistInstance.css";
 import "./FontAwesome.css";
-import NewCheckListItem from "./NewListItemTextbox";
+import NewCheckListItem from "./NewChecklistItem";
 
 export default class ChecklistInstance extends Component {
   displayName = ChecklistInstance.name;
@@ -86,7 +86,6 @@ export default class ChecklistInstance extends Component {
         <h1>
           {title} <ChecklistCompletion finished={finished} />
         </h1>
-
         <p>{description}</p>
         <ul className="removeBullets">
           {items.map(i => (
