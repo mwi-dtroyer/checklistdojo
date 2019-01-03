@@ -89,12 +89,14 @@ export default class ChecklistInstance extends Component {
   handleListItemKeyPress = event => {
     var keypressed = event.keyCode || event.which;
     if (keypressed === 13) {
-      var items = this.state.items;
-      items.push({
-        key: items.length,
-        text: event.target.value,
-        checked: false
-      });
+      const items = [
+        ...this.state.items,
+        {
+          key: this.state.items.length,
+          text: event.target.value,
+          checked: false
+        }
+      ];
       event.target.value = "";
 
       this.setState({
@@ -105,12 +107,14 @@ export default class ChecklistInstance extends Component {
     }
   };
   handleListItemSubmit = () => {
-    var items = this.state.items;
-    items.push({
-      key: items.length,
-      text: document.getElementById("newCheckListItem").value,
-      checked: false
-    });
+    const items = [
+      ...this.state.items,
+      {
+        key: this.state.items.length,
+        text: document.getElementById("newCheckListItem").value,
+        checked: false
+      }
+    ];
     document.getElementById("newCheckListItem").value = "";
 
     this.setState({
