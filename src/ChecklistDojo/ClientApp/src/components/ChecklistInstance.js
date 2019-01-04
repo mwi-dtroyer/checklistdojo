@@ -100,7 +100,7 @@ export default class ChecklistInstance extends Component {
               key={i.key}
               onCheck={this.handleListItemCheck}
               deleteItem={this.handleListItemDelete}
-              finished={finished}
+              disabled={finished}
             />
           ))}
           {addItem ? (
