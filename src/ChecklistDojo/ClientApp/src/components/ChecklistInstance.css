@@ -1,0 +1,30 @@
+ul.removeBullets {
+  list-style-type: none;
+  padding: 0;
+}
+
+button.careful {
+  background-color: white;
+  border-color: black;
+  font-weight: bold;
+  outline: 0;
+}
+
+button.buttonsWithIcons {
+  background-color: white;
+  border: none;
+  outline: 0;
+}
+
+svg {
+  cursor: pointer;
+}
+
+svg > path {
+  pointer-events: none;
+}
+
+.grayed {
+  color: gray;
+  pointer-events: none;
+}
