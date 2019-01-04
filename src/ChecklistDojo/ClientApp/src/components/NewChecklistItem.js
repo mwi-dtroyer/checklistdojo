@@ -7,23 +7,23 @@ export default class NewChecklistItem extends Component {
     super(props);
 
     this.state = {
-      newItemText: "",
+      text: "",
       handleListItemSubmit: props.handleListItemSubmit
     };
   }
   handleListItemKeyPress = event => {
     var keypressed = event.keyCode || event.which;
     if (keypressed === 13) {
-      this.state.handleListItemSubmit(event.target.value);
+      this.state.handleListItemSubmit(text);
 
       this.setState({
-        newItemText: ""
+        text: ""
       });
     }
   };
 
   render() {
-    const { newItemText } = this.state;
+    const { text } = this.state;
     return (
       <div>
         <li>
@@ -34,10 +34,10 @@ export default class NewChecklistItem extends Component {
             onKeyDown={this.handleListItemKeyPress}
             onChange={() => {
               this.setState({
-                newItemText: this.value
+                text: this.value
               });
             }}
-            value={newItemText}
+            value={text}
           />
         </li>
       </div>
