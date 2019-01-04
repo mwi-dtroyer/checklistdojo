@@ -14,10 +14,9 @@ button.buttonsWithIcons {
   background-color: white;
   border: none;
   outline: 0;
-  padding-left: 0;
 }
 
-FontAwesomeIcon {
+svg {
   cursor: pointer;
 }
 

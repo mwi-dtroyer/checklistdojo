@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBan } from "@fortawesome/free-solid-svg-icons";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default class NewChecklistItem extends Component {
@@ -12,15 +11,13 @@ export default class NewChecklistItem extends Component {
 
     this.state = {
       text: "",
-      handleListItemSubmit: props.handleListItemSubmit,
-      handleListItemCancel: props.handleListItemCancel
+      handleListItemSubmit: props.handleListItemSubmit
     };
   }
   handleListItemKeyPress = event => {
     var keypressed = event.keyCode || event.which;
     if (keypressed === 13) {
       this.state.handleListItemSubmit(this.state.text);
-
       this.setState({
         text: ""
       });
@@ -28,8 +25,10 @@ export default class NewChecklistItem extends Component {
   };
 
   addItem = () => {
-    console.log(this.state.text);
     this.state.handleListItemSubmit(this.state.text);
+    this.setState({
+      text: ""
+    });
   };
 
   setText = event => {
@@ -39,40 +38,28 @@ export default class NewChecklistItem extends Component {
   };
 
   render() {
-    const { text, finished, handleListItemCancel } = this.state;
+    const { text, finished } = this.state;
     return (
-      <div>
-        <li>
-          <FontAwesomeIcon icon={faSquare} className="grayed" />{" "}
-          <input
-            type="text"
-            placeholder="Press Enter When Done"
-            onKeyDown={this.handleListItemKeyPress}
-            onChange={this.setText}
-            value={text}
+      <li>
+        <FontAwesomeIcon icon={faSquare} className="grayed" />{" "}
+        <input
+          type="text"
+          placeholder="Add New Item"
+          onKeyDown={this.handleListItemKeyPress}
+          onChange={this.setText}
+          value={text}
+        />
+        <button
+          className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
+          onClick={this.addItem}
+        >
+          <FontAwesomeIcon
+            icon={faPlusSquare}
+            className={finished ? "grayed" : ""}
+            size={"2x"}
           />
-          <button
-            className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
-            onClick={this.addItem}
-          >
-            <FontAwesomeIcon
-              icon={faCheckCircle}
-              className={finished ? "grayed" : ""}
-              size={"1x"}
-            />
-          </button>
-          <button
-            className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
-            onClick={handleListItemCancel}
-          >
-            <FontAwesomeIcon
-              icon={faBan}
-              className={finished ? "grayed" : ""}
-              size={"1x"}
-            />
-          </button>
-        </li>
-      </div>
+        </button>
+      </li>
     );
   }
 }

@@ -1,6 +1,4 @@
 ﻿import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import ChecklistItem from "./ChecklistItem";
 import ChecklistCompletion from "./ChecklistCompletion";
 import CompleteAllButton from "./CompleteAllButton";
@@ -17,7 +15,6 @@ export default class ChecklistInstance extends Component {
     // the metadata we'll need for database idos, user idos, etc
     this.state = {
       finished: false,
-      addItem: false,
       title: "Get Rich Quick Scheme",
       description: "A fast and easy three step path to financial success",
       items: [
@@ -83,7 +80,7 @@ export default class ChecklistInstance extends Component {
   };
 
   render() {
-    const { title, description, items, addItem, finished } = this.state;
+    const { title, description, items, finished } = this.state;
     return (
       <div>
         <h1>
@@ -102,31 +99,17 @@ export default class ChecklistInstance extends Component {
               disabled={finished}
             />
           ))}
-          {addItem ? (
-            <NewCheckListItem
-              handleListItemSubmit={this.handleListItemSubmit}
-              handleListItemCancel={() => {
-                this.setState({
-                  addItem: false
-                });
-              }}
-            />
-          ) : null}
+          <NewCheckListItem
+            handleListItemSubmit={this.handleListItemSubmit}
+            handleListItemCancel={() => {
+              this.setState({
+                addItem: false
+              });
+            }}
+          />
         </ul>
 
         <div id="header-content">
-          <button
-            className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
-            onClick={() => {
-              this.setState({ addItem: true });
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faPlusCircle}
-              className={finished ? "grayed" : ""}
-              size={"2x"}
-            />
-          </button>
           <br />
           <br />
           <CompleteAllButton
