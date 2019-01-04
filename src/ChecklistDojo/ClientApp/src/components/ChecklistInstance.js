@@ -34,18 +34,18 @@ export default class ChecklistInstance extends Component {
     var changedItem = this.state.items[key];
     changedItem.checked = !changedItem.checked;
     const items = this.state.items.filter(function(value) {
-      if (value.key == key) {
+      if (value.key.toString() === key.toString()) {
         return changedItem;
       } else {
         return value;
       }
     });
     var unfinished = items.filter(function(value) {
-      return value.checked == false;
+      return value.checked === false;
     }).length;
     this.setState({
       items: items,
-      finished: unfinished == 0
+      finished: unfinished === 0
     });
   };
 
@@ -55,14 +55,14 @@ export default class ChecklistInstance extends Component {
         ? event.target.parentNode.name
         : event.target.name;
     var items = this.state.items.filter(function(value) {
-      return value.key != key;
+      return value.key.toString() !== key.toString();
     });
     var unfinished = items.filter(function(value) {
-      return value.checked == false;
+      return value.checked === false;
     }).length;
     this.setState({
       items: items,
-      finished: unfinished == 0
+      finished: unfinished === 0
     });
   };
 
