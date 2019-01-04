@@ -52,18 +52,13 @@ export default class ChecklistInstance extends Component {
   };
 
   handleListItemDelete = event => {
-    console.log(event.target);
-    console.log(event.target.parentNode);
     var key =
       event.target.name == null
         ? event.target.parentNode.name
         : event.target.name;
-    console.log(key);
-    console.log(this.state.items);
     var items = this.state.items.filter(function(value) {
       return value.key.toString() !== key.toString();
     });
-    console.log(items);
     var unfinished = items.filter(function(value) {
       return value.checked === false;
     }).length;
