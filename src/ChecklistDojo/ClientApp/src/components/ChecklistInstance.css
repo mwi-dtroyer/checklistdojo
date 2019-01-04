@@ -13,13 +13,16 @@ button.careful {
 button.buttonsWithIcons {
   background-color: white;
   border: none;
-  font-size: 1.5em;
   outline: 0;
   padding-left: 0;
 }
 
-i.clickableIcons {
+FontAwesomeIcon {
   cursor: pointer;
+}
+
+svg > path {
+  pointer-events: none;
 }
 
 .grayed {

@@ -1,13 +1,16 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSquare } from "@fortawesome/free-regular-svg-icons";
+import { faCheckSquare } from "@fortawesome/free-regular-svg-icons";
 
 export default ({ id, checked, onCheck, text, deleteItem, finished }) => (
   <li>
-    <i
-      className={`fa fa${checked ? "-check" : ""}-square-o clickableIcons ${
-        finished ? " grayed" : ""
-      }`}
+    <FontAwesomeIcon
+      icon={checked ? faCheckSquare : faSquare}
       id={id}
       onClick={onCheck}
+      className={`${finished ? " grayed" : ""} aria-hidden="true"`}
     />{" "}
     {text} {"   "}
     <button
@@ -15,9 +18,9 @@ export default ({ id, checked, onCheck, text, deleteItem, finished }) => (
       name={id}
       onClick={deleteItem}
     >
-      <i
-        className={`fa fa-trash-o clickableIcons ${finished ? " grayed" : ""}`}
-        aria-hidden="true"
+      <FontAwesomeIcon
+        icon={faTrashAlt}
+        className={`${finished ? " grayed" : ""} aria-hidden="true"`}
       />
     </button>
   </li>

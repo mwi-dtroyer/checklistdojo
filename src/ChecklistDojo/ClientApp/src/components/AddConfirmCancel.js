@@ -1,4 +1,7 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBan } from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default ({
   finished,
@@ -13,9 +16,10 @@ export default ({
         className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
         onClick={handleListItemCancel}
       >
-        <i
-          className={`fa fa-ban clickableIcons ${finished ? "grayed" : ""}`}
-          aria-hidden="true"
+        <FontAwesomeIcon
+          icon={faBan}
+          className={finished ? "grayed" : ""}
+          size={"2x"}
         />
       </button>
     ) : null}
@@ -23,11 +27,10 @@ export default ({
       className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
       onClick={addItem ? handleListItemSubmit : handleListItemAdd}
     >
-      <i
-        className={`fa fa-plus-circle clickableIcons  ${
-          finished ? "grayed" : ""
-        }`}
-        aria-hidden="true"
+      <FontAwesomeIcon
+        icon={faPlusCircle}
+        className={finished ? "grayed" : ""}
+        size={"2x"}
       />
     </button>
   </div>

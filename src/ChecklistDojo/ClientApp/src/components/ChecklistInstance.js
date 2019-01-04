@@ -4,7 +4,6 @@ import ChecklistCompletion from "./ChecklistCompletion";
 import CompleteAllButton from "./CompleteAllButton";
 import AddConfirmCancel from "./AddConfirmCancel";
 import "./ChecklistInstance.css";
-import "./FontAwesome.css";
 import NewCheckListItem from "./NewChecklistItem";
 
 export default class ChecklistInstance extends Component {
@@ -30,11 +29,15 @@ export default class ChecklistInstance extends Component {
   }
 
   handleListItemCheck = event => {
-    var items = this.state.items.filter(function(value) {
-      if (value.key == event.target.id) {
-        value.checked = !value.checked;
+    var key = event.target.id;
+    var changedItem = this.state.items[key];
+    changedItem.checked = !changedItem.checked;
+    const items = this.state.items.filter(function(value) {
+      if (value.key == key) {
+        return changedItem;
+      } else {
+        return value;
       }
-      return value;
     });
     var unfinished = items.filter(function(value) {
       return value.checked == false;
@@ -63,6 +66,7 @@ export default class ChecklistInstance extends Component {
   };
 
   handleListItemSubmit = value => {
+    console.log(value);
     const items = [
       ...this.state.items,
       {
@@ -71,7 +75,7 @@ export default class ChecklistInstance extends Component {
         checked: false
       }
     ];
-
+    console.log(items);
     this.setState({
       items: items,
       addItem: false,
