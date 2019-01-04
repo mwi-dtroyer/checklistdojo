@@ -1,8 +1,9 @@
 ﻿import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import ChecklistItem from "./ChecklistItem";
 import ChecklistCompletion from "./ChecklistCompletion";
 import CompleteAllButton from "./CompleteAllButton";
-import AddConfirmCancel from "./AddConfirmCancel";
 import "./ChecklistInstance.css";
 import NewCheckListItem from "./NewChecklistItem";
 
@@ -66,7 +67,6 @@ export default class ChecklistInstance extends Component {
   };
 
   handleListItemSubmit = value => {
-    console.log(value);
     const items = [
       ...this.state.items,
       {
@@ -75,7 +75,6 @@ export default class ChecklistInstance extends Component {
         checked: false
       }
     ];
-    console.log(items);
     this.setState({
       items: items,
       addItem: false,
@@ -106,27 +105,30 @@ export default class ChecklistInstance extends Component {
           {addItem ? (
             <NewCheckListItem
               handleListItemSubmit={this.handleListItemSubmit}
+              handleListItemCancel={() => {
+                this.setState({
+                  addItem: false
+                });
+              }}
             />
           ) : null}
         </ul>
 
         <div id="header-content">
-          <AddConfirmCancel
-            finished={finished}
-            addItem={addItem}
-            handleListItemCancel={() => {
-              this.setState({
-                addItem: false
-              });
+          <button
+            className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
+            onClick={() => {
+              this.setState({ addItem: true });
             }}
-            handleListItemSubmit={this.handleListItemSubmit}
-            handleListItemAdd={() => {
-              this.setState({
-                addItem: true
-              });
-            }}
-          />
-
+          >
+            <FontAwesomeIcon
+              icon={faPlusCircle}
+              className={finished ? "grayed" : ""}
+              size={"2x"}
+            />
+          </button>
+          <br />
+          <br />
           <CompleteAllButton
             finished={finished}
             handleListItemCompleteAll={() => {

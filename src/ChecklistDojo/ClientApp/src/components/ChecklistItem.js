@@ -21,6 +21,7 @@ export default ({ id, checked, onCheck, text, deleteItem, disabled }) => (
       <FontAwesomeIcon
         icon={faTrashAlt}
         className={`${disabled ? " grayed" : ""} aria-hidden="true"`}
+        size={"1x"}
       />
     </button>
   </li>
