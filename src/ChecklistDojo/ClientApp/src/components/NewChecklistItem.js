@@ -38,7 +38,7 @@ export default class NewChecklistItem extends Component {
   };
 
   render() {
-    const { text, finished } = this.state;
+    const { text } = this.state;
     return (
       <li>
         <FontAwesomeIcon icon={faSquare} className="grayed" />{" "}
@@ -49,15 +49,8 @@ export default class NewChecklistItem extends Component {
           onChange={this.setText}
           value={text}
         />
-        <button
-          className={`buttonsWithIcons ${finished ? "grayed" : ""}`}
-          onClick={this.addItem}
-        >
-          <FontAwesomeIcon
-            icon={faPlusSquare}
-            className={finished ? "grayed" : ""}
-            size={"2x"}
-          />
+        <button className="buttonsWithIcons" onClick={this.addItem}>
+          <FontAwesomeIcon icon={faPlusSquare} size={"2x"} />
         </button>
       </li>
     );
